@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+/* Importar fuentes (alternativa a index.html si prefieres) */
+/* @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;700&display=swap'); */
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif; /* Fuente principal para texto general */
+  background-color: #1a1a1a; /* Un gris oscuro, casi negro */
+  color: #e0e0e0; /* Texto claro */
+  min-height: 100vh; /* Asegura que el fondo cubra toda la altura */
+  overflow-x: hidden; /* Evita scroll horizontal si el fondo es muy ancho */
+  /* Fondo temático con patrones sutiles */
+  background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre-dark.png'), 
+                    linear-gradient(135deg, #1a1a1a 0%, #000000 100%); /* Patrón + degradado */
+  background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bangers', cursive; /* Fuente de cómic para títulos */
+  color: #ec1d24; /* Rojo icónico de Marvel */
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+header {
+  background-color: rgba(236, 29, 36, 0.9); /* Rojo Marvel semi-transparente */
+  color: white;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  position: sticky; /* Sticky header para mejor UX */
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #a00;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: white; /* Blanco para el título del header */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
