@@ -1,0 +1,197 @@
+/* Asumimos que tienes estas variables de color en tu styles.css global */
+:root {
+  --marvel-red: #ED1D24;
+  --marvel-dark: #202020;
+  --marvel-light: #F0F0F0;
+  --post-bg-dark: #0f0f12; /* Un azul muy oscuro, casi negro */
+  --post-border-glitch: #00f0ff; /* Un cian eléctrico para el efecto glitch */
+}
+
+/* Estilo para el título principal de la sección */
+h2 {
+  text-align: center;
+  font-family: 'Bangers', cursive; /* Fuente temática */
+  font-size: 3.5rem;
+  color: var(--marvel-red);
+  letter-spacing: 3px;
+  margin-bottom: 2.5rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden; /* Para el posible efecto de línea debajo */
+}
+
+/* Efecto de línea debajo del título (opcional, si quieres un toque extra) */
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 4px;
+  background: linear-gradient(to right, transparent, var(--marvel-red), transparent);
+}
+
+
+/* Contenedor de la cuadrícula de tarjetas de posts */
+.card-grid {
+  display: grid;
+  /* Dos columnas en pantallas grandes, una en pequeñas */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+  gap: 2rem; /* Espacio entre las tarjetas */
+  padding: 1rem;
+}
+
+/* Estilo individual para cada tarjeta de post */
+.post-card {
+  background-color: var(--post-bg-dark);
+  border-radius: 5px; /* Bordes más rectos, como un informe */
+  padding: 2rem;
+  border: 1px solid #333; /* Borde sutil */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s ease-in-out; /* Transición más sofisticada */
+  position: relative; /* Para los efectos "raros" */
+  overflow: hidden; /* Asegura que los efectos no se salgan */
+}
+
+/* Efecto de "glitch" al pasar el cursor (elegante y raro) */
+.post-card::before, .post-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  pointer-events: none; /* Para que no interfiera con los clics */
+}
+
+.post-card::before {
+  border: 2px solid var(--marvel-red); /* Borde rojo */
+  transform: scale(0.98);
+}
+
+.post-card::after {
+  border: 2px solid var(--post-border-glitch); /* Borde cian para el "glitch" */
+  transform: scale(1.02);
+}
+
+.post-card:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.post-card:hover::after {
+  opacity: 0.5; /* Más transparente para un efecto más sutil */
+  transform: scale(1);
+}
+
+/* Animación sutil al pasar el cursor */
+.post-card:hover {
+  transform: translateY(-15px) scale(1.02); /* Se eleva y crece ligeramente */
+  box-shadow: 0 15px 30px rgba(237, 29, 36, 0.6); /* Sombra más intensa */
+  border-color: var(--marvel-red); /* Borde se vuelve rojo */
+}
+
+/* Título de la publicación */
+.post-card h4 {
+  font-family: 'Roboto', sans-serif; /* Usamos Roboto para los títulos de posts */
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--marvel-red); /* Título en rojo para destacar */
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Cuerpo del post */
+.post-card p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  color: #a0a0a0; /* Texto en un gris más suave */
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Estilo para el caso de acceso denegado (si aún lo usas) */
+.access-denied {
+  background-color: #3d0e10;
+  border: 2px dashed var(--marvel-red);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.access-denied p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--marvel-light);
+}
+
+.access-denied .cta-button {
+  background-color: var(--marvel-red);
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.access-denied .cta-button:hover {
+  background-color: #a81218;
+  transform: scale(1.05);
+}
+
+/*
+=================================
+  Estilos para Controles de Paginación
+=================================
+*/
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem; /* Espacio entre botones */
+  margin-top: 2.5rem;
+  padding: 1rem;
+}
+
+.pagination-controls button {
+  background-color: #2a2a2e; /* Fondo oscuro */
+  color: var(--marvel-light);
+  border: 1px solid #444;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo al pasar el ratón */
+.pagination-controls button:not(:disabled):hover {
+  background-color: var(--marvel-red);
+  color: white;
+  border-color: var(--marvel-red);
+}
+
+/* Estilo para el botón de la página activa */
+.pagination-controls button.active {
+  background-color: var(--marvel-red);
+  color: white;
+  border-color: var(--marvel-red);
+  cursor: default;
+}
+
+/* Estilo para los botones deshabilitados */
+.pagination-controls button:disabled {
+  background-color: #1e1e1e;
+  color: #555;
+  cursor: not-allowed;
+  border-color: #333;
+}

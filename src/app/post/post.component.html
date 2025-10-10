@@ -1,0 +1,33 @@
+<h2> Lista de publicaciones</h2>
+<div class="card-grid">
+<div class="post-card" *ngFor="let post of paginatedPosts">
+    <h4>{{ post.title }}</h4>
+    <p>{{ post.body }}</p>
+</div>
+</div>
+
+<div class="pagination-controls" *ngIf="totalPages > 1">
+<button 
+    (click)="previousPage()" 
+    [disabled]="currentPage === 1">
+    &laquo; Anterior
+  </button>
+
+  <button 
+    (click)="previousPage()" 
+    [disabled]="currentPage === 1">
+    &laquo; Anterior
+  </button>
+
+  <button 
+    *ngFor="let pageNum of getPageNumbers()"
+    (click)="goToPage(pageNum)"
+    [class.active]="pageNum === currentPage">
+    {{ pageNum }}
+  </button>
+
+  <button 
+    (click)="nextPage()" 
+    [disabled]="currentPage === totalPages">
+    Siguiente &raquo;
+  </button>

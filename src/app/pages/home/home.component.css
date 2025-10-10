@@ -1,0 +1,86 @@
+/* src/app/pages/home/home.component.css */
+
+.home-container {
+  padding: 2rem;
+}
+
+/* Estilo para la sección principal de bienvenida */
+.hero-section {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.hdqwalls.com/wallpapers/marvel-logo-avengers-4k-py.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  border: 2px solid var(--marvel-red);
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.hero-content p {
+  font-size: 1.4rem;
+  color: var(--marvel-light);
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.cta-button {
+  background-color: var(--marvel-red);
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #a81218;
+  transform: scale(1.05);
+}
+
+/* Grid para las tarjetas de acceso directo */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  background-color: rgba(32, 32, 32, 0.9); /* Un poco transparente */
+  padding: 2rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(237, 29, 36, 0.3);
+  border-color: var(--marvel-red);
+}
+
+.feature-card h2 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.feature-card p {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.feature-card a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--marvel-red);
+  text-decoration: none;
+  font-weight: bold;
+}

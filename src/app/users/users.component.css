@@ -1,0 +1,75 @@
+/* Asumimos que tienes estas variables de color en tu styles.css global */
+:root {
+  --marvel-red: #ED1D24;
+  --marvel-dark: #202020;
+  --marvel-light: #F0F0F0;
+  --card-bg: #2a2a2e; /* Un gris oscuro para las tarjetas */
+}
+
+/* Estilo para el título principal de la sección */
+h2 {
+  text-align: center;
+  font-family: 'Bangers', cursive; /* Fuente temática */
+  font-size: 3rem;
+  color: var(--marvel-red);
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de la cuadrícula de tarjetas */
+.card-grid {
+  display: grid;
+  /* Crea columnas responsivas: se ajustarán automáticamente al tamaño de la pantalla */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; /* Espacio entre las tarjetas */
+  padding: 1rem;
+}
+
+/* Estilo individual para cada tarjeta de usuario */
+.user-card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 1.5rem;
+  border-left: 5px solid var(--marvel-red);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column; /* Organiza el contenido verticalmente */
+}
+
+/* Efecto al pasar el cursor sobre la tarjeta */
+.user-card:hover {
+  transform: translateY(-10px); /* La tarjeta se eleva sutilmente */
+  box-shadow: 0 10px 25px rgba(237, 29, 36, 0.4); /* Sombra con el color de acento */
+}
+
+/* Nombre del usuario (título de la tarjeta) */
+.user-card h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--marvel-light);
+  margin: 0 0 0.5rem 0;
+  border-bottom: 2px solid var(--marvel-red); /* Línea divisoria */
+  padding-bottom: 0.5rem;
+}
+
+/* Correo electrónico del usuario */
+.user-card p {
+  font-size: 1rem;
+  color: #ccc;
+  margin: 0.5rem 0;
+  flex-grow: 1; /* Empuja el nombre de la compañía hacia abajo */
+}
+
+/* Nombre de la compañía */
+.user-card span {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #888;
+  margin-top: 1rem;
+  text-align: right;
+  border-top: 1px dashed #444;
+  padding-top: 0.5rem;
+}

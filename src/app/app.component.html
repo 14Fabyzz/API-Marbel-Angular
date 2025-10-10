@@ -1,1 +1,18 @@
-<app-character-list>  </app-character-list>
+
+
+<header>
+    <h1>Multi Explorer Marvel</h1>
+    <nav>
+        <a routerLink="/home" routerLinkActive="active-link">Home</a>
+        <a routerLink="/characters" routerLinkActive="active-link">Marvel</a>
+        <a routerLink="/users" routerLinkActive="active-link">Users</a>
+        <a routerLink="/posts" routerLinkActive="active-link">Posts</a>
+    </nav>
+    <div class="auth-controls">
+        <button *ngIf="!isLoggedIn" (click)="login()"> Iniciar Sesión</button>
+        <button *ngIf="isLoggedIn" (click)="logout()"> Cerrar Sesión</button>
+    </div>
+</header>
+<main>
+    <router-outlet></router-outlet>
+</main>

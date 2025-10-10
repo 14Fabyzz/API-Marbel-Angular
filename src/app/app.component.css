@@ -1,12 +1,90 @@
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f4f4f4;
+/* Asumimos que tienes estas variables de color en tu styles.css global */
+:root {
+  --marvel-red: #ED1D24;
+  --marvel-dark: #202020;
+  --marvel-light: #F0F0F0;
 }
+
 header {
-  background-color: #ec1d24; /* Rojo Marvel */
+  display: flex; /* Para alinear el título, nav y botones */
+  justify-content: space-between; /* Espacia los elementos uniformemente */
+  align-items: center; /* Centra los elementos verticalmente */
+  padding: 1rem 3rem;
+  background-color: var(--marvel-dark);
+  border-bottom: 4px solid var(--marvel-red);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Título principal */
+h1 {
+  font-family: 'Bangers', cursive; /* Fuente de estilo cómic */
+  font-size: 2.5rem;
+  color: var(--marvel-light);
+  margin: 0;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* Contenedor de la navegación */
+nav {
+  display: flex;
+  gap: 2rem; /* Espacio entre los enlaces */
+}
+
+/* Estilo de los enlaces de navegación */
+nav a {
+  color: var(--marvel-light);
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 0.5rem 0;
+  position: relative; /* Necesario para la línea de abajo */
+  transition: color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón por encima */
+nav a:hover {
+  color: var(--marvel-red);
+}
+
+/* Estilo para el enlace activo (usando la clase de Angular) */
+nav a.active-link {
+  color: var(--marvel-red);
+}
+
+/* Línea animada debajo del enlace activo */
+nav a.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--marvel-red);
+}
+
+/* Contenedor para los botones de autenticación */
+.auth-controls {
+  margin-left: 2rem;
+}
+
+/* Estilo general de los botones */
+.auth-controls button {
+  background-color: var(--marvel-red);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón sobre los botones */
+.auth-controls button:hover {
+  background-color: #c0141a; /* Un rojo más oscuro */
+  transform: scale(1.05); /* Efecto de crecimiento sutil */
 }
