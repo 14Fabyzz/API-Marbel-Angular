@@ -1,0 +1,79 @@
+
+.deadpool-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px); /* Ajusta a la altura de la ventana menos el navbar */
+  padding: 2rem;
+  background: radial-gradient(circle at center, rgba(30, 30, 30, 0.9), rgba(0, 0, 0, 0.95)); /* Fondo oscuro con degradado */
+}
+
+.deadpool-card {
+  background-color: rgba(30, 0, 0, 0.9); /* Rojo oscuro casi negro, un guiño al traje */
+  border: 4px solid var(--marvel-red); /* Borde rojo brillante */
+  border-radius: 15px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(var(--marvel-red), 0.7), 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra brillante */
+  max-width: 800px;
+  width: 100%;
+  animation: entrance 1s ease-out; /* Animación al entrar */
+}
+
+@keyframes entrance {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.deadpool-card h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 3.5rem;
+  color: #f7e01b; /* Un amarillo brillante como un pensamiento de Deadpool */
+  text-shadow: 3px 3px 0px var(--marvel-red), 5px 5px 0px rgba(0,0,0,0.7); /* Sombra tipo cómic */
+  margin-bottom: 2rem;
+  letter-spacing: 3px;
+}
+
+.deadpool-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  border: 3px solid var(--marvel-red);
+  box-shadow: 0 0 25px rgba(237, 29, 36, 0.5);
+}
+
+.deadpool-message {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3rem;
+  color: var(--marvel-light);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-style: italic; /* Un toque de Deadpool */
+}
+
+.deadpool-button {
+  background-color: #f7e01b; /* Botón amarillo llamativo */
+  color: var(--marvel-dark);
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(247, 224, 27, 0.4); /* Sombra amarilla */
+}
+
+.deadpool-button:hover {
+  background-color: #e0cb10; /* Amarillo más oscuro al hover */
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(247, 224, 27, 0.6);
+}

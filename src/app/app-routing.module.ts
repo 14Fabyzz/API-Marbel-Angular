@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from './guards/auth.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { CharacterListComponent } from './component/character-list/character-list.component';
+import { DeadpoolHelloComponent } from './pages/deadpool-hello/deadpool-hello.component';
+
 
 const routes: Routes = [
   { 
@@ -22,6 +24,11 @@ const routes: Routes = [
   {
     path: 'characters',
     component: CharacterListComponent
+  
+  },
+  {
+    path: 'deadpool',
+    component: DeadpoolHelloComponent
   
   },
 

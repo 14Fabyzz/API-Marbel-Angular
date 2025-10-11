@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CharacterListComponent } from './component/character-list/character-list.component';
 import { HomeComponent } from './pages/home/home.component';
+import { DeadpoolHelloComponent } from './pages/deadpool-hello/deadpool-hello.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterListComponent,
-    HomeComponent
+    HomeComponent,
+    DeadpoolHelloComponent
   ],
   imports: [
     BrowserModule,
