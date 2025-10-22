@@ -1,0 +1,75 @@
+.login-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 3rem;
+  background-color: var(--card-bg, #2a2a2e);
+  border-radius: 10px;
+  border: 1px solid #444;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.login-container h2 {
+  text-align: center;
+  color: var(--marvel-red, #ED1D24);
+  font-family: 'Bangers', cursive;
+  font-size: 3rem;
+  margin-top: 0;
+}
+
+.login-container p {
+  text-align: center;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--marvel-light, #F0F0F0);
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #1e1e1e;
+  border: 1px solid #555;
+  border-radius: 5px;
+  color: white;
+  box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--marvel-red, #ED1D24);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #c0141a;
+  transform: scale(1.02);
+}
+
+.submit-btn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error-message {
+  color: #ffc0cb; /* Un rosa pálido para los errores */
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}

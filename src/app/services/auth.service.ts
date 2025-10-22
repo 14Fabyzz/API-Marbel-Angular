@@ -1,24 +1,27 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'; // <-- 1. ASEGÚRATE DE IMPORTAR ESTO
+import { Router } from '@angular/router';
 
+// 2. AÑADE ESTE DECORADOR
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class authService {
 
-  constructor() { }
+  private isLoggedIn = false;
 
-  private _isLogged = false;
+  constructor(private router: Router) { }
 
-  isLoggedIn(): boolean {
-    return this._isLogged;
+  login(email: string, password: string): void {
+    console.log('Intentando iniciar sesión con:', email, password);
+    this.isLoggedIn = true;
   }
-  
-  login() {
-    this._isLogged = true;
-  };
 
-  logout() {
-    this._isLogged = false;
+  logout(): void {
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
-  
+
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
+  }
 }

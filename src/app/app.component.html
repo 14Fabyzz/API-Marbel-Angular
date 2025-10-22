@@ -9,8 +9,8 @@
         <a routerLink="/posts" routerLinkActive="active-link">Posts</a>
     </nav>
     <div class="auth-controls">
-        <button *ngIf="!isLoggedIn" (click)="login()"> Iniciar Sesión</button>
-        <button *ngIf="isLoggedIn" (click)="logout()"> Cerrar Sesión</button>
+        <button *ngIf="!authService.isAuthenticated()" (click)="login()"> Iniciar Sesión</button>
+        <button *ngIf="authService.isAuthenticated()" (click)="logout()"> Cerrar Sesión</button>
     </div>
 </header>
 <main>

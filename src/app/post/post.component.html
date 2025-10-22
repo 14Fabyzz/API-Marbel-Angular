@@ -14,12 +14,6 @@
   </button>
 
   <button 
-    (click)="previousPage()" 
-    [disabled]="currentPage === 1">
-    &laquo; Anterior
-  </button>
-
-  <button 
     *ngFor="let pageNum of getPageNumbers()"
     (click)="goToPage(pageNum)"
     [class.active]="pageNum === currentPage">

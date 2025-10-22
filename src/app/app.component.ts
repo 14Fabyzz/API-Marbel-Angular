@@ -1,25 +1,30 @@
 import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
+import { authService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
   standalone: false,
-  styleUrl: './app.component.css'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'marvel-app';
 
-  constructor(private authService: AuthService) {}
+  // 3. Inyecta el AuthService como público y el Router
+  constructor(
+    public authService: authService, 
+    private router: Router
+  ) {}
 
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+  // 4. Crea el método login() para navegar a la página de login
+  login(): void {
+    this.router.navigate(['/login']);
   }
-  login() {
-    this.authService.login();
-  }
-  logout() {
+
+  // 5. Crea el método logout() que llama al servicio
+  logout(): void {
     this.authService.logout();
   }
-  
+
 }
