@@ -1,75 +1,276 @@
-/* Asumimos que tienes estas variables de color en tu styles.css global */
+/* Variables de color mejoradas con paleta Marvel extendida */
 :root {
   --marvel-red: #ED1D24;
+  --marvel-red-dark: #c41219;
+  --marvel-red-glow: rgba(237, 29, 36, 0.6);
   --marvel-dark: #202020;
+  --marvel-darker: #151515;
   --marvel-light: #F0F0F0;
-  --card-bg: #2a2a2e; /* Un gris oscuro para las tarjetas */
+  --card-bg: #2a2a2e;
+  --card-border: #3a3a3e;
+  --text-secondary: #b0b0b0;
+  --text-muted: #888;
 }
 
-/* Estilo para el título principal de la sección */
+/* Título principal con efecto de cómic mejorado */
 h2 {
   text-align: center;
-  font-family: 'Bangers', cursive; /* Fuente temática */
-  font-size: 3rem;
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: var(--marvel-red);
-  letter-spacing: 2px;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 3px;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  position: relative;
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.8),
+    5px 5px 0 rgba(0, 0, 0, 0.5),
+    0 0 20px var(--marvel-red-glow);
 }
 
-/* Contenedor de la cuadrícula de tarjetas */
+/* Efecto de línea decorativa debajo del título */
+h2::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--marvel-red), transparent);
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* Cuadrícula de tarjetas mejorada */
 .card-grid {
   display: grid;
-  /* Crea columnas responsivas: se ajustarán automáticamente al tamaño de la pantalla */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem; /* Espacio entre las tarjetas */
-  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Estilo individual para cada tarjeta de usuario */
+/* Tarjeta de usuario con efectos premium */
 .user-card {
-  background-color: var(--card-bg);
-  border-radius: 10px;
-  padding: 1.5rem;
-  border-left: 5px solid var(--marvel-red);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--marvel-darker) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  border-left: 6px solid var(--marvel-red);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
-  flex-direction: column; /* Organiza el contenido verticalmente */
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-/* Efecto al pasar el cursor sobre la tarjeta */
+/* Efecto de brillo diagonal animado */
+.user-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+/* Hover mejorado con múltiples efectos */
 .user-card:hover {
-  transform: translateY(-10px); /* La tarjeta se eleva sutilmente */
-  box-shadow: 0 10px 25px rgba(237, 29, 36, 0.4); /* Sombra con el color de acento */
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 
+    0 15px 40px rgba(237, 29, 36, 0.5),
+    0 0 30px rgba(237, 29, 36, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-left-color: #fff;
 }
 
-/* Nombre del usuario (título de la tarjeta) */
+.user-card:hover::before {
+  opacity: 1;
+  left: 100%;
+}
+
+/* Nombre del usuario con mejor jerarquía */
 .user-card h3 {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--marvel-light);
-  margin: 0 0 0.5rem 0;
-  border-bottom: 2px solid var(--marvel-red); /* Línea divisoria */
-  padding-bottom: 0.5rem;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.75rem;
+  position: relative;
+  letter-spacing: 0.5px;
 }
 
-/* Correo electrónico del usuario */
+/* Línea animada bajo el nombre */
+.user-card h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--marvel-red);
+  transition: width 0.4s ease;
+}
+
+.user-card:hover h3::after {
+  width: 100%;
+}
+
+/* Email con mejor contraste */
 .user-card p {
-  font-size: 1rem;
-  color: #ccc;
-  margin: 0.5rem 0;
-  flex-grow: 1; /* Empuja el nombre de la compañía hacia abajo */
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0 0 0;
+  flex-grow: 1;
+  line-height: 1.6;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* Nombre de la compañía */
+/* Icono de email (opcional) */
+.user-card p::before {
+  content: '✉';
+  color: var(--marvel-red);
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Compañía con estilo mejorado */
 .user-card span {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-style: italic;
-  color: #888;
-  margin-top: 1rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
   text-align: right;
-  border-top: 1px dashed #444;
-  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.user-card:hover span {
+  color: var(--marvel-red);
+}
+
+/* Contenedor del filtro con diseño mejorado */
+.filter-container {
+  margin: 2rem auto 3rem;
+  max-width: 600px;
+  padding: 0 1rem;
+}
+
+/* Label del filtro con efecto heroico */
+.filter-container label {
+  display: block;
+  margin-bottom: 1rem;
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: 2px;
+  color: var(--marvel-red);
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 
+    2px 2px 0 rgba(0, 0, 0, 0.8),
+    0 0 15px var(--marvel-red-glow);
+}
+
+/* Input de búsqueda premium */
+.filter-container input[type="text"] {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1.1rem;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e1e1e 0%, #252525 100%);
+  color: var(--marvel-light);
+  border: 2px solid var(--card-border);
+  border-radius: 50px;
+  box-sizing: border-box;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Placeholder mejorado */
+.filter-container input[type="text"]::placeholder {
+  color: #666;
+  font-style: italic;
+  font-weight: 300;
+  transition: color 0.3s ease;
+}
+
+/* Efecto de focus espectacular */
+.filter-container input[type="text"]:focus {
+  outline: none;
+  border-color: var(--marvel-red);
+  background: linear-gradient(135deg, #252525 0%, #2a2a2a 100%);
+  box-shadow: 
+    0 0 0 4px rgba(237, 29, 36, 0.15),
+    0 0 25px rgba(237, 29, 36, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.filter-container input[type="text"]:focus::placeholder {
+  color: #888;
+}
+
+/* Animación de entrada para las tarjetas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-card {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+/* Escalonamiento de la animación */
+.user-card:nth-child(1) { animation-delay: 0.1s; }
+.user-card:nth-child(2) { animation-delay: 0.2s; }
+.user-card:nth-child(3) { animation-delay: 0.3s; }
+.user-card:nth-child(4) { animation-delay: 0.4s; }
+.user-card:nth-child(5) { animation-delay: 0.5s; }
+.user-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .user-card {
+    padding: 1.5rem;
+  }
+  
+  h2 {
+    margin-bottom: 2rem;
+  }
+  
+  .filter-container {
+    margin: 1.5rem auto 2rem;
+  }
 }

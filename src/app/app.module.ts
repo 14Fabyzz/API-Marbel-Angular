@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { userHubInterceptor } from './services/user-hub.interceptor';
+
+
 import { CommonModule } from '@angular/common'; // Para *ngIf, *ngFor
 import { ReactiveFormsModule } from '@angular/forms'; // Para formularios
 
@@ -12,15 +15,19 @@ import { CharacterListComponent } from './component/character-list/character-lis
 import { HomeComponent } from './pages/home/home.component';
 import { DeadpoolHelloComponent } from './pages/deadpool-hello/deadpool-hello.component';
 
-// --- Tus Componentes (STANDALONE) ---
-import { LoginComponent } from './pages/login/login.component'; 
+
+import { LoginComponent } from './pages/login/login.component';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent, // Correcto, ahora va en declarations
+    AppComponent, 
     CharacterListComponent,
     HomeComponent,
-    DeadpoolHelloComponent
+    DeadpoolHelloComponent,
+    
     // LoginComponent NO va aquí
   ],
   imports: [
@@ -32,8 +39,8 @@ import { LoginComponent } from './pages/login/login.component';
     LoginComponent // LoginComponent (standalone) se importa aquí
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideHttpClient(withInterceptors([userHubInterceptor]))
   ],
-  bootstrap: [AppComponent] // Correcto, esto inicia el AppComponent
+  bootstrap: [AppComponent] 
 })
 export class AppModule { }

@@ -1,90 +1,428 @@
-/* Asumimos que tienes estas variables de color en tu styles.css global */
+/* Variables de color extendidas */
 :root {
   --marvel-red: #ED1D24;
+  --marvel-red-dark: #c41219;
+  --marvel-red-glow: rgba(237, 29, 36, 0.6);
   --marvel-dark: #202020;
+  --marvel-darker: #151515;
   --marvel-light: #F0F0F0;
+  --header-height: 80px;
 }
 
+/* Header premium con efectos modernos */
 header {
-  display: flex; /* Para alinear el título, nav y botones */
-  justify-content: space-between; /* Espacia los elementos uniformemente */
-  align-items: center; /* Centra los elementos verticalmente */
-  padding: 1rem 3rem;
-  background-color: var(--marvel-dark);
-  border-bottom: 4px solid var(--marvel-red);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 4rem;
+  background: linear-gradient(135deg, var(--marvel-darker) 0%, var(--marvel-dark) 100%);
+  border-bottom: 5px solid var(--marvel-red);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.8),
+    0 0 50px rgba(237, 29, 36, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
   color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-/* Título principal */
+/* Efecto de línea brillante superior */
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent,
+    var(--marvel-red),
+    transparent
+  );
+  opacity: 0.5;
+}
+
+/* Efecto al hacer scroll (agregar clase .scrolled con JS) */
+header.scrolled {
+  padding: 0.8rem 4rem;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.9),
+    0 0 60px rgba(237, 29, 36, 0.3);
+}
+
+/* Logo/Título con efecto heroico */
 h1 {
-  font-family: 'Bangers', cursive; /* Fuente de estilo cómic */
-  font-size: 2.5rem;
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 4vw, 2.8rem);
   color: var(--marvel-light);
   margin: 0;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 
+    2px 2px 0 var(--marvel-red),
+    4px 4px 0 rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(237, 29, 36, 0.5);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
 }
 
-/* Contenedor de la navegación */
+h1:hover {
+  color: #fff;
+  text-shadow: 
+    2px 2px 0 var(--marvel-red),
+    4px 4px 0 rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(237, 29, 36, 0.8);
+  transform: scale(1.02);
+}
+
+/* Efecto de resplandor pulsante en el título */
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--marvel-red), transparent);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleX(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Navegación mejorada */
 nav {
   display: flex;
-  gap: 2rem; /* Espacio entre los enlaces */
+  gap: 3rem;
+  align-items: center;
 }
 
-/* Estilo de los enlaces de navegación */
+/* Enlaces de navegación premium */
 nav a {
   color: var(--marvel-light);
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 1.1rem;
-  padding: 0.5rem 0;
-  position: relative; /* Necesario para la línea de abajo */
-  transition: color 0.3s ease;
+  padding: 0.8rem 1.2rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 8px;
 }
 
-/* Efecto al pasar el ratón por encima */
-nav a:hover {
-  color: var(--marvel-red);
-}
-
-/* Estilo para el enlace activo (usando la clase de Angular) */
-nav a.active-link {
-  color: var(--marvel-red);
-}
-
-/* Línea animada debajo del enlace activo */
-nav a.active-link::after {
+/* Fondo sutil al hover */
+nav a::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background-color: var(--marvel-red);
+  height: 100%;
+  background: rgba(237, 29, 36, 0.1);
+  border-radius: 8px;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  z-index: -1;
 }
 
-/* Contenedor para los botones de autenticación */
+nav a:hover::before {
+  transform: scale(1);
+}
+
+/* Hover mejorado con resplandor */
+nav a:hover {
+  color: #fff;
+  text-shadow: 0 0 15px rgba(237, 29, 36, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Línea inferior animada para todos los enlaces */
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--marvel-red), #ff6b6b);
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px var(--marvel-red-glow);
+}
+
+nav a:hover::after {
+  width: 80%;
+}
+
+/* Enlace activo con efectos premium */
+nav a.active-link {
+  color: #fff;
+  background: rgba(237, 29, 36, 0.15);
+  text-shadow: 0 0 20px rgba(237, 29, 36, 0.8);
+}
+
+nav a.active-link::before {
+  transform: scale(1);
+  background: rgba(237, 29, 36, 0.2);
+}
+
+/* Línea completa para enlace activo */
+nav a.active-link::after {
+  width: 90%;
+  height: 4px;
+  box-shadow: 
+    0 0 15px var(--marvel-red-glow),
+    0 2px 8px rgba(237, 29, 36, 0.5);
+}
+
+/* Contenedor de autenticación */
 .auth-controls {
+  display: flex;
+  gap: 1rem;
   margin-left: 2rem;
 }
 
-/* Estilo general de los botones */
+/* Botones de autenticación premium */
 .auth-controls button {
-  background-color: var(--marvel-red);
+  background: linear-gradient(135deg, var(--marvel-red) 0%, var(--marvel-red-dark) 100%);
   color: white;
-  border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
+  border: 2px solid var(--marvel-red);
+  padding: 12px 28px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 5px 15px rgba(237, 29, 36, 0.4),
+    0 0 20px rgba(237, 29, 36, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Efecto al pasar el ratón sobre los botones */
+/* Efecto de brillo deslizante */
+.auth-controls button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.auth-controls button:hover::before {
+  left: 100%;
+}
+
+/* Efecto de onda al hacer clic */
+.auth-controls button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.auth-controls button:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* Hover mejorado con elevación */
 .auth-controls button:hover {
-  background-color: #c0141a; /* Un rojo más oscuro */
-  transform: scale(1.05); /* Efecto de crecimiento sutil */
+  background: linear-gradient(135deg, #ff3d3d 0%, var(--marvel-red) 100%);
+  transform: translateY(-3px) scale(1.05);
+  border-color: #fff;
+  box-shadow: 
+    0 8px 25px rgba(237, 29, 36, 0.6),
+    0 0 40px rgba(237, 29, 36, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.auth-controls button:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Variante de botón secundario (opcional) */
+.auth-controls button.secondary {
+  background: transparent;
+  border-color: var(--marvel-red);
+  color: var(--marvel-red);
+  box-shadow: none;
+}
+
+.auth-controls button.secondary:hover {
+  background: var(--marvel-red);
+  color: white;
+}
+
+/* Menú móvil hamburguesa (oculto por defecto) */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(237, 29, 36, 0.2);
+}
+
+.mobile-menu-toggle span {
+  width: 28px;
+  height: 3px;
+  background: var(--marvel-light);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(237, 29, 36, 0.5);
+}
+
+/* Animación del menú hamburguesa al abrir */
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  header {
+    padding: 1rem 2rem;
+  }
+  
+  nav {
+    gap: 2rem;
+  }
+  
+  nav a {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .mobile-menu-toggle {
+    display: flex;
+  }
+  
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: linear-gradient(135deg, var(--marvel-darker) 0%, var(--marvel-dark) 100%);
+    padding: 1rem 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid var(--marvel-red);
+  }
+  
+  nav.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  nav a {
+    width: 100%;
+    padding: 1.2rem 2rem;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  nav a::after {
+    bottom: 0;
+    height: 3px;
+  }
+  
+  .auth-controls {
+    width: 100%;
+    margin: 1rem 0 0 0;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+  }
+  
+  .auth-controls button {
+    flex: 1;
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.8rem 1rem;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  nav a {
+    font-size: 0.95rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .auth-controls button {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
 }

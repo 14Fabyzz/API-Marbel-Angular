@@ -1,79 +1,333 @@
-
+/* Contenedor principal con fondo cinematográfico mejorado */
 .deadpool-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 80px); /* Ajusta a la altura de la ventana menos el navbar */
+  min-height: calc(100vh - 80px);
   padding: 2rem;
-  background: radial-gradient(circle at center, rgba(30, 30, 30, 0.9), rgba(0, 0, 0, 0.95)); /* Fondo oscuro con degradado */
+  background: 
+    radial-gradient(ellipse at top, rgba(237, 29, 36, 0.15), transparent 50%),
+    radial-gradient(ellipse at bottom, rgba(30, 30, 30, 0.95), rgba(0, 0, 0, 1));
+  position: relative;
+  overflow: hidden;
 }
 
+/* Efecto de partículas o ruido de fondo (opcional) */
+.deadpool-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.01) 2px,
+      rgba(255, 255, 255, 0.01) 4px
+    );
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Tarjeta principal con efectos premium */
 .deadpool-card {
-  background-color: rgba(30, 0, 0, 0.9); /* Rojo oscuro casi negro, un guiño al traje */
-  border: 4px solid var(--marvel-red); /* Borde rojo brillante */
-  border-radius: 15px;
-  padding: 3rem;
+  background: 
+    linear-gradient(145deg, rgba(40, 0, 0, 0.95), rgba(20, 0, 0, 0.98)),
+    radial-gradient(circle at top right, rgba(237, 29, 36, 0.1), transparent);
+  border: 5px solid var(--marvel-red);
+  border-radius: 20px;
+  padding: 3.5rem;
   text-align: center;
-  box-shadow: 0 0 40px rgba(var(--marvel-red), 0.7), 0 0 20px rgba(0, 0, 0, 0.8); /* Sombra brillante */
-  max-width: 800px;
+  box-shadow: 
+    0 0 60px rgba(237, 29, 36, 0.8),
+    0 0 100px rgba(237, 29, 36, 0.4),
+    0 20px 40px rgba(0, 0, 0, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  max-width: 900px;
   width: 100%;
-  animation: entrance 1s ease-out; /* Animación al entrar */
+  position: relative;
+  animation: entrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
 }
 
-@keyframes entrance {
-  from {
+/* Efecto de brillo pulsante en el borde */
+.deadpool-card::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, 
+    var(--marvel-red),
+    #ff3d3d,
+    var(--marvel-red),
+    #ff3d3d
+  );
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  animation: pulse-border 3s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
     opacity: 0;
-    transform: translateY(50px) scale(0.9);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  50% {
+    opacity: 0.5;
   }
 }
 
+/* Animación de entrada mejorada */
+@keyframes entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.85) rotateX(10deg);
+    filter: blur(10px);
+  }
+  60% {
+    transform: translateY(-10px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+/* Título estilo cómic explosivo */
 .deadpool-card h1 {
   font-family: 'Bangers', cursive;
-  font-size: 3.5rem;
-  color: #f7e01b; /* Un amarillo brillante como un pensamiento de Deadpool */
-  text-shadow: 3px 3px 0px var(--marvel-red), 5px 5px 0px rgba(0,0,0,0.7); /* Sombra tipo cómic */
-  margin-bottom: 2rem;
-  letter-spacing: 3px;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #ffd700; /* Dorado brillante */
+  text-transform: uppercase;
+  text-shadow: 
+    3px 3px 0 var(--marvel-red),
+    6px 6px 0 rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(255, 215, 0, 0.6),
+    0 0 50px rgba(237, 29, 36, 0.4);
+  margin-bottom: 2.5rem;
+  letter-spacing: 4px;
+  position: relative;
+  animation: title-pop 0.8s ease-out 0.3s backwards;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
 }
 
+/* Animación del título */
+@keyframes title-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-5deg);
+  }
+  70% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* Efecto de brillo en el título */
+.deadpool-card h1::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20%, 100% {
+    left: 200%;
+  }
+}
+
+/* Imagen con efectos premium */
 .deadpool-image {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
-  margin-bottom: 2rem;
-  border: 3px solid var(--marvel-red);
-  box-shadow: 0 0 25px rgba(237, 29, 36, 0.5);
+  border-radius: 15px;
+  margin-bottom: 2.5rem;
+  border: 4px solid var(--marvel-red);
+  box-shadow: 
+    0 0 40px rgba(237, 29, 36, 0.7),
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fade-in 1s ease-out 0.5s backwards;
+  filter: brightness(1.05) contrast(1.1);
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.deadpool-image:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 
+    0 0 60px rgba(237, 29, 36, 0.9),
+    0 15px 40px rgba(0, 0, 0, 0.9);
+  filter: brightness(1.1) contrast(1.15);
+}
+
+/* Mensaje con estilo mejorado */
 .deadpool-message {
   font-family: 'Roboto', sans-serif;
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   color: var(--marvel-light);
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  font-style: italic; /* Un toque de Deadpool */
+  line-height: 2;
+  margin-bottom: 3rem;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(237, 29, 36, 0.3);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  animation: fade-in 1s ease-out 0.7s backwards;
+  position: relative;
+  padding: 0 1rem;
 }
 
+/* Comillas decorativas */
+.deadpool-message::before,
+.deadpool-message::after {
+  content: '"';
+  font-size: 3rem;
+  color: var(--marvel-red);
+  opacity: 0.3;
+  font-style: normal;
+  line-height: 0;
+}
+
+.deadpool-message::before {
+  margin-right: 0.5rem;
+}
+
+.deadpool-message::after {
+  margin-left: 0.5rem;
+}
+
+/* Botón estilo Deadpool explosivo */
 .deadpool-button {
-  background-color: #f7e01b; /* Botón amarillo llamativo */
-  color: var(--marvel-dark);
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 50%, #ffd700 100%);
+  color: #1a1a1a;
+  border: 3px solid #f7e01b;
+  padding: 18px 40px;
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: 'Bangers', cursive;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(247, 224, 27, 0.4); /* Sombra amarilla */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 
+    0 8px 20px rgba(255, 215, 0, 0.5),
+    0 0 30px rgba(255, 215, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  animation: fade-in 1s ease-out 0.9s backwards;
+}
+
+/* Efecto de destello en el botón */
+.deadpool-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.deadpool-button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .deadpool-button:hover {
-  background-color: #e0cb10; /* Amarillo más oscuro al hover */
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(247, 224, 27, 0.6);
+  background: linear-gradient(135deg, #ffed4e 0%, #ffd700 50%, #ffed4e 100%);
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 
+    0 15px 35px rgba(255, 215, 0, 0.7),
+    0 0 50px rgba(255, 215, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  border-color: #fff;
+}
+
+.deadpool-button:active {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 5px 15px rgba(255, 215, 0, 0.6),
+    inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto de texto en el botón */
+.deadpool-button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive mejorado */
+@media (max-width: 768px) {
+  .deadpool-container {
+    padding: 1.5rem;
+  }
+  
+  .deadpool-card {
+    padding: 2rem;
+    border-width: 4px;
+  }
+  
+  .deadpool-card h1 {
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .deadpool-message {
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  
+  .deadpool-button {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .deadpool-card {
+    padding: 1.5rem;
+  }
+  
+  .deadpool-button {
+    width: 100%;
+  }
 }
